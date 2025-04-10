@@ -1,17 +1,71 @@
-const container = document.querySelector('.lego-container');
-const input = document.querySelector('input');
-const button = document.querySelector('button');
+// Game elements
+const playerRegistration = document.getElementById('player-registration');
+const gameContainer = document.getElementById('game-container');
+const playerNameInput = document.getElementById('player-name');
+const startGameButton = document.getElementById('start-game');
+const playerDisplay = document.getElementById('player-display');
+const input = document.querySelector('#game-container input');
+const guessButton = document.getElementById('guess-btn');
+const nextGameButton = document.getElementById('next-game');
 const message = document.querySelector('#message');
 const attemptsDisplay = document.getElementById('attempts');
 
-// Generate random number between 1-100
-let targetNumber = Math.floor(Math.random() * 100) + 1;
-let attempts = 0;
+// Stats viewing functionality
+const statsModal = document.getElementById('stats-modal');
+const statsContainer = document.getElementById('stats-container');
+const viewStatsBtn = document.getElementById('view-stats');
+const viewStatsInGameBtn = document.getElementById('view-stats-ingame');
+const closeStatsBtn = document.getElementById('close-stats');
 
-button.addEventListener('click', checkGuess);
+// Game state
+let targetNumber;
+let attempts = 0;
+let currentPlayer = '';
+let gameStats = [];
+
+// Initialize game
+function initializeGame() {
+    targetNumber = Math.floor(Math.random() * 100) + 1;
+    attempts = 0;
+    updateAttempts();
+    message.textContent = 'Start guessing...';
+    nextGameButton.classList.add('hidden');
+    input.value = '';
+}
+
+// Event Listeners
+startGameButton.addEventListener('click', () => {
+    const playerName = playerNameInput.value.trim();
+    if (playerName) {
+        currentPlayer = playerName;
+        playerDisplay.textContent = currentPlayer;
+        playerRegistration.classList.add('hidden');
+        gameContainer.classList.remove('hidden');
+        initializeGame();
+    }
+});
+
+guessButton.addEventListener('click', checkGuess);
 input.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') checkGuess();
 });
+
+nextGameButton.addEventListener('click', () => {
+    container.classList.remove('success');
+    initializeGame();
+});
+
+// Record game stats
+function recordGameStats(won) {
+    gameStats.push({
+        playerName: currentPlayer,
+        timestamp: new Date().toISOString(),
+        attempts: attempts,
+        won: won
+    });
+    // Store in localStorage
+    localStorage.setItem('numberGameStats', JSON.stringify(gameStats));
+}
 
 function celebrateWin() {
     const winSound = document.getElementById('winSound');
@@ -23,7 +77,6 @@ function celebrateWin() {
         origin: { y: 0.6 }
     });
 
-    // Fire multiple confetti bursts
     setTimeout(() => {
         confetti({
             particleCount: 50,
@@ -51,8 +104,8 @@ function wrongGuess(guess) {
     const errorSound = document.getElementById('errorSound');
     errorSound.play();
     
-    container.classList.add('shake');
-    setTimeout(() => container.classList.remove('shake'), 500);
+    gameContainer.classList.add('shake');
+    setTimeout(() => gameContainer.classList.remove('shake'), 500);
     
     if (guess < targetNumber) {
         message.className = 'message-low';
@@ -61,6 +114,7 @@ function wrongGuess(guess) {
         message.className = 'message-high';
         message.textContent = 'Too high! Try a lower number.';
     }
+    input.value = ''; // Clear input after each guess
 }
 
 function checkGuess() {
@@ -82,19 +136,70 @@ function checkGuess() {
     updateAttempts();
     
     if (guess === targetNumber) {
-        container.classList.add('success');
-        message.textContent = `Congratulations! You got it in ${attempts} attempts!`;
+        gameContainer.classList.add('success');
+        message.textContent = `Congratulations ${currentPlayer}! You got it in ${attempts} attempts!`;
         celebrateWin();
-        
-        setTimeout(() => {
-            container.classList.remove('success');
-            targetNumber = Math.floor(Math.random() * 100) + 1;
-            input.value = '';
-            message.textContent = 'New game! Start guessing...';
-            attempts = 0;
-            updateAttempts();
-        }, 2000); // Increased delay to allow for celebration
+        recordGameStats(true);
+        nextGameButton.classList.remove('hidden');
+        input.value = ''; // Clear input
     } else {
         wrongGuess(guess);
     }
+}
+
+// Stats viewing functionality
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    return date.toLocaleString();
+}
+
+function displayGameStats() {
+    statsContainer.innerHTML = '';
+    const stats = gameStats.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    
+    if (stats.length === 0) {
+        statsContainer.innerHTML = '<p>No games played yet!</p>';
+        return;
+    }
+
+    stats.forEach(game => {
+        const record = document.createElement('div');
+        record.className = 'game-record';
+        record.innerHTML = `
+            <p><strong>Player:</strong> ${game.playerName}</p>
+            <p><strong>Date:</strong> ${formatDate(game.timestamp)}</p>
+            <p><strong>Attempts:</strong> ${game.attempts}</p>
+            <p><strong>Result:</strong> ${game.won ? 'Won' : 'Gave up'}</p>
+        `;
+        statsContainer.appendChild(record);
+    });
+}
+
+[viewStatsBtn, viewStatsInGameBtn].forEach(btn => {
+    btn.addEventListener('click', () => {
+        displayGameStats();
+        statsModal.classList.remove('hidden');
+    });
+});
+
+closeStatsBtn.addEventListener('click', () => {
+    statsModal.classList.add('hidden');
+});
+
+// Close modal when clicking outside
+statsModal.addEventListener('click', (e) => {
+    if (e.target === statsModal) {
+        statsModal.classList.add('hidden');
+    }
+});
+
+// Load previous game stats if they exist
+try {
+    const savedStats = localStorage.getItem('numberGameStats');
+    if (savedStats) {
+        gameStats = JSON.parse(savedStats);
+    }
+} catch (e) {
+    console.error('Error loading game stats:', e);
+    gameStats = [];
 }
