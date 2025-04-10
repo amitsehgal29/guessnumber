@@ -47,20 +47,16 @@ async function loadStats() {
         if (playerFilter.value) params.append('player', playerFilter.value);
         if (dateFilter.value) params.append('date', dateFilter.value);
 
-        const [gamesResponse, statsResponse] = await Promise.all([
-            fetch(`${API_URL}/api/games?${params}`),
-            fetch(`${API_URL}/api/stats`)
-        ]);
+        const gamesResponse = await fetch(`${API_URL}/api/games?${params}`);
 
-        if (!gamesResponse.ok || !statsResponse.ok) {
+        if (!gamesResponse.ok) {
             throw new Error('Failed to fetch data');
         }
 
         const games = await gamesResponse.json();
-        const stats = await statsResponse.json();
 
         displayStats(games);
-        updateSummary(stats);
+        updateSummary(games);
     } catch (error) {
         console.error('Error loading game stats:', error);
         statsContainer.innerHTML = '<p>Error loading game statistics</p>';
@@ -88,13 +84,18 @@ function displayStats(games) {
     });
 }
 
-function updateSummary(stats) {
+function updateSummary(games) {
+    const totalGames = games.length;
+    const gamesWon = games.filter(game => game.won).length;
+    const averageAttempts = totalGames > 0 ? (games.reduce((sum, game) => sum + game.attempts, 0) / totalGames) : 0;
+    const uniquePlayers = new Set(games.map(game => game.playerName)).size;
+
     summaryContainer.innerHTML = `
-        <p><strong>Total Games:</strong> ${stats.totalGames}</p>
-        <p><strong>Games Won:</strong> ${stats.gamesWon}</p>
-        <p><strong>Win Rate:</strong> ${((stats.gamesWon / stats.totalGames) * 100).toFixed(1)}%</p>
-        <p><strong>Average Attempts:</strong> ${stats.averageAttempts?.toFixed(1) || 0}</p>
-        <p><strong>Unique Players:</strong> ${stats.uniquePlayers}</p>
+        <p><strong>Total Games:</strong> ${totalGames}</p>
+        <p><strong>Games Won:</strong> ${gamesWon}</p>
+        <p><strong>Win Rate:</strong> ${((gamesWon / totalGames) * 100).toFixed(1)}%</p>
+        <p><strong>Average Attempts:</strong> ${averageAttempts.toFixed(1)}</p>
+        <p><strong>Unique Players:</strong> ${uniquePlayers}</p>
     `;
 }
 
