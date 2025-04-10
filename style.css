@@ -1,8 +1,8 @@
 body {
     font-family: 'Arial', sans-serif;
     /* Updated background to a gradient */
-    background: linear-gradient(135deg, #ff7eb3, #ff758c);
-    color: #fff;
+    background: linear-gradient(135deg, #1e1e2f, #252538);
+    color: #e0e0e0;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -12,9 +12,9 @@ body {
 
 .lego-container {
     /* Modernized container with a glassmorphism effect */
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(30, 30, 47, 0.8);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
@@ -24,15 +24,15 @@ body {
 h1 {
     /* Slightly larger font size for modern look */
     font-size: 2.5rem;
-    color: #333;
+    color: #ff758c;
     margin-bottom: 10px;
 }
 
 input {
     /* Modernized input styles */
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(30, 30, 47, 0.5);
+    color: #e0e0e0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
     padding: 10px;
     font-size: 1rem;
@@ -43,7 +43,7 @@ input {
 input:focus {
     border-color: #ff758c;
     outline: none;
-    box-shadow: 0 0 5px rgba(255, 117, 140, 0.5);
+    box-shadow: 0 0 5px rgba(255, 117, 140, 0.8);
 }
 
 button {
@@ -51,7 +51,7 @@ button {
     padding: 10px 20px;
     font-size: 1rem;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: #fff;
+    color: #1e1e2f;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -61,10 +61,11 @@ button {
 button:hover {
     background: linear-gradient(135deg, #ff7eb3, #ff758c);
     transform: scale(1.05);
+    color: #fff;
 }
 
 p {
     /* Updated text color for better contrast */
     font-size: 1rem;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(224, 224, 224, 0.8);
 }
