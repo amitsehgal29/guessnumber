@@ -2,6 +2,7 @@ const container = document.querySelector('.lego-container');
 const input = document.querySelector('input');
 const button = document.querySelector('button');
 const message = document.querySelector('#message');
+const attemptsDisplay = document.getElementById('attempts');
 
 // Generate random number between 1-100
 let targetNumber = Math.floor(Math.random() * 100) + 1;
@@ -42,6 +43,10 @@ function celebrateWin() {
     }, 400);
 }
 
+function updateAttempts() {
+    attemptsDisplay.textContent = attempts;
+}
+
 function checkGuess() {
     const guessText = input.value.trim();
     
@@ -58,6 +63,7 @@ function checkGuess() {
     }
 
     attempts++;
+    updateAttempts();
     
     if (guess === targetNumber) {
         container.classList.add('success');
@@ -70,6 +76,7 @@ function checkGuess() {
             input.value = '';
             message.textContent = 'New game! Start guessing...';
             attempts = 0;
+            updateAttempts();
         }, 2000); // Increased delay to allow for celebration
     } else {
         message.textContent = guess < targetNumber ? 

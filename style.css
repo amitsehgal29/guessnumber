@@ -1,7 +1,7 @@
 body {
-    font-family: 'Tahoma', sans-serif; /* Retro Windows font */
-    background: #c0c0c0; /* Classic Windows gray */
-    color: #000;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #43cea2, #185a9d);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,12 +15,14 @@ body {
 }
 
 .lego-container {
-    background: #e0e0e0; /* Flat light gray */
-    border: 2px solid #808080; /* Classic border */
-    border-radius: 0; /* Remove rounded corners */
-    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px;
     text-align: center;
-    box-shadow: none; /* Remove modern shadow */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
 }
 
 h1 {
@@ -28,44 +30,51 @@ h1 {
     color: #000;
     font-weight: bold;
     margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 input {
-    background: #fff;
+    background: rgba(255, 255, 255, 0.9);
     color: #000;
-    border: 2px solid #808080;
+    border: none;
     font-family: 'Tahoma', sans-serif;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 0;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    border-radius: 25px;
     margin-bottom: 10px;
     width: 300px; /* Increased width */
     height: 40px; /* Increased height */
     box-sizing: border-box; /* Ensure padding doesn't affect final size */
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 input:focus {
-    border-color: #000080; /* Classic blue highlight */
+    background: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    transform: scale(1.02);
     outline: none;
-    box-shadow: none; /* Remove modern shadow */
 }
 
 button {
-    padding: 5px 15px; /* Adjust padding for retro look */
+    padding: 12px 30px;
     font-size: 1rem;
-    background: #dcdcdc; /* Flat button color */
-    color: #000;
-    border: 2px solid #808080;
+    background: linear-gradient(45deg, #FF6B6B, #FF8E53);
+    color: white;
+    font-weight: bold;
+    border: none;
     font-family: 'Tahoma', sans-serif;
-    border-radius: 0;
+    border-radius: 25px;
     cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.3s ease;
 }
 
 button:hover {
-    background: #c0c0c0; /* Slightly darker on hover */
-    transform: none; /* Remove modern scaling */
-    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(45deg, #FF8E53, #FF6B6B);
 }
 
 p {
@@ -86,11 +95,31 @@ p {
 
 .success {
     animation: successFlash 1.5s ease, bounce 0.5s ease;
+    background: linear-gradient(135deg, #A8E6CF, #4CAF50);
     transition: transform 0.5s ease;
     transform: scale(1.05);
+}
+
+.attempts-display {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 8px 15px;
+    border-radius: 15px;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+#attempts {
+    color: #FF8E53;
+    font-size: 1.2em;
 }
 
 @keyframes bounce {
     0%, 100% { transform: scale(1.05); }
     50% { transform: scale(1.15); }
+}
+
+@keyframes successFlash {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
 }
