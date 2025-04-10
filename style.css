@@ -1,6 +1,8 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    /* Updated background to a gradient */
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,43 +11,60 @@ body {
 }
 
 .lego-container {
-    background-color: #ffcc00;
-    border: 5px solid #333;
+    /* Modernized container with a glassmorphism effect */
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
     border-radius: 10px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-    font-size: 2rem;
+    /* Slightly larger font size for modern look */
+    font-size: 2.5rem;
     color: #333;
     margin-bottom: 10px;
 }
 
 input {
+    /* Modernized input styles */
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
     padding: 10px;
     font-size: 1rem;
-    border: 2px solid #333;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
+input:focus {
+    border-color: #ff758c;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 117, 140, 0.5);
+}
+
 button {
+    /* Modernized button styles */
     padding: 10px 20px;
     font-size: 1rem;
-    background-color: #333;
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 button:hover {
-    background-color: #555;
+    background: linear-gradient(135deg, #ff7eb3, #ff758c);
+    transform: scale(1.05);
 }
 
 p {
+    /* Updated text color for better contrast */
     font-size: 1rem;
-    color: #333;
+    color: rgba(255, 255, 255, 0.8);
 }
