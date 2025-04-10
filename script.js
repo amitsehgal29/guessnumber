@@ -56,7 +56,7 @@ input.addEventListener('keyup', (e) => {
 });
 
 nextGameButton.addEventListener('click', () => {
-    container.classList.remove('success');
+    gameContainer.classList.remove('success'); // Corrected the reference to the game container
     initializeGame();
 });
 
