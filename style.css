@@ -39,13 +39,15 @@ input {
     font-size: 1rem;
     border-radius: 0;
     margin-bottom: 10px;
+    width: 300px; /* Increased width */
+    height: 40px; /* Increased height */
+    box-sizing: border-box; /* Ensure padding doesn't affect final size */
 }
 
 input:focus {
     border-color: #000080; /* Classic blue highlight */
     outline: none;
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
+    box-shadow: none; /* Remove modern shadow */
 }
 
 button {
@@ -70,31 +72,4 @@ p {
     font-size: 1rem;
     color: #000;
     font-family: 'Tahoma', sans-serif;
-}
-
-/* Success animation keyframes */
-@keyframes successFlash {
-    0% { background: #e0e0e0; }
-    25% { background: #90EE90; }
-    50% { background: #e0e0e0; }
-    75% { background: #90EE90; }
-    100% { background: #e0e0e0; }
-}
-
-.success {
-    animation: successFlash 1.5s ease;
-    transition: transform 0.5s ease;
-    transform: scale(1.05);
-}
-
-.success input {
-    border-color: #008000;
-    background-color: #90EE90;
-    font-weight: bold;
-}
-
-.success button {
-    background: #008000;
-    color: white;
-    border-color: #006400;
 }
