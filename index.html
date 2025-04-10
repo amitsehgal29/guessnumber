@@ -7,12 +7,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <canvas id="confetti"></canvas>
     <div class="lego-container">
         <h1>Guess the Number</h1>
-        <input type="number" min="1" max="100" placeholder="Enter a number between 1-100" required>
+        <input type="text" pattern="[0-9]+" maxlength="3" placeholder="Enter a number between 1-100" required>
         <button>Guess!</button>
         <p id="message">Start guessing...</p>
     </div>
+    <audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
