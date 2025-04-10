@@ -1,7 +1,5 @@
 // API Configuration
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000' 
-    : 'https://guessnumber-production.up.railway.app';
+const API_URL = 'https://guessnumber-1e1p.onrender.com';
 
 // Admin password hash (this is a simple example - in production use proper authentication)
 const ADMIN_PASSWORD = '1234'; // Change this to your desired password
