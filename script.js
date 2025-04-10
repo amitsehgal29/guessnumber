@@ -190,6 +190,42 @@ function displayGameStats() {
     });
 }
 
+// Fetch and display game logs
+async function fetchGameLogs() {
+    try {
+        const response = await fetch(`${API_URL}/api/games`);
+        if (!response.ok) {
+            throw new Error('Failed to fetch game logs');
+        }
+        const logs = await response.json();
+        displayGameLogs(logs);
+    } catch (error) {
+        console.error('Error fetching game logs:', error);
+    }
+}
+
+function displayGameLogs(logs) {
+    statsContainer.innerHTML = '';
+    if (logs.length === 0) {
+        statsContainer.innerHTML = '<p>No game logs available</p>';
+        return;
+    }
+    logs.forEach(log => {
+        const logEntry = document.createElement('div');
+        logEntry.className = 'game-log';
+        logEntry.innerHTML = `
+            <p><strong>Player:</strong> ${log.playerName}</p>
+            <p><strong>Date:</strong> ${new Date(log.timestamp).toLocaleString()}</p>
+            <p><strong>Attempts:</strong> ${log.attempts}</p>
+            <p><strong>Result:</strong> ${log.won ? 'Won' : 'Lost'}</p>
+        `;
+        statsContainer.appendChild(logEntry);
+    });
+}
+
+// Call fetchGameLogs when viewing stats
+viewStatsBtn.addEventListener('click', fetchGameLogs);
+
 [viewStatsBtn, viewStatsInGameBtn].forEach(btn => {
     btn.addEventListener('click', () => {
         displayGameStats();
