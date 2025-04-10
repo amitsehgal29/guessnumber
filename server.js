@@ -65,7 +65,7 @@ app.post('/api/games', async (req, res) => {
 });
 
 // API endpoint to retrieve game logs
-app.get('/api/games', isAdmin, async (req, res) => {
+app.get('/api/games', async (req, res) => {
     const selectQuery = 'SELECT * FROM game_logs ORDER BY timestamp DESC';
     try {
         const result = await pool.query(selectQuery);
