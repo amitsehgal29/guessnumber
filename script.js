@@ -17,3 +17,11 @@ document.getElementById('guessButton').addEventListener('click', () => {
 
     attemptsDisplay.textContent = `Attempts: ${attempts}`;
 });
+
+// Add event listener for Enter key
+document.querySelector('input').addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+        event.preventDefault(); // Prevent form submission if within a form
+        document.querySelector('button').click();
+    }
+});
