@@ -1,13 +1,15 @@
-/* Comic theme for the game */
+/* Consistent Neon Theme for All Pages */
 body {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(135deg, #FFEB3B, #FF9800);
-    color: #212121;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: #ffffff;
     margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
 }
 
 /* Add a rule to fix overlapping borders by collapsing them */
@@ -29,32 +31,27 @@ body {
     display: none !important;
 }
 
-h1 {
-    font-size: 2.5rem;
-    color: #D32F2F;
-    text-shadow: 2px 2px #FFEB3B;
-    text-align: center;
+h1, h2, h3, h4, h5, h6 {
+    color: #ff6ec7;
+    text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
 }
 
 input {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: #FFEB3B;
-    color: #212121;
-    border: 2px solid #FF9800;
-    border-radius: 10px;
+    background: #24243e;
+    color: #ffffff;
+    border: 1px solid #ff6ec7;
+    border-radius: 5px;
     padding: 10px;
-    font-size: 1.2rem;
+    font-size: 1rem;
+    margin-bottom: 10px;
     width: 100%;
     max-width: 300px;
-    margin-bottom: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-color: #F44336;
-    box-shadow: 0 0 10px #F44336;
+    border-color: #ffc107;
+    box-shadow: 0 0 10px #ffc107;
 }
 
 input[type="number"] {
@@ -69,20 +66,19 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 button {
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    background: linear-gradient(45deg, #FF5722, #FFC107);
-    color: white;
+    background: linear-gradient(45deg, #ff6ec7, #ffc107);
+    color: #ffffff;
     border: none;
-    border-radius: 10px;
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
@@ -220,16 +216,41 @@ p {
 }
 
 #stats-container {
-    margin: 1rem 0;
-    text-align: left;
+    background: #302b63;
+    border: 1px solid #ff6ec7;
+    border-radius: 10px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    color: #ffffff;
 }
 
 #stats-container .game-record {
-    padding: 0.5rem;
-    border-bottom: 1px solid #B2EBF2;
-    margin-bottom: 0.5rem;
+    padding: 10px;
+    border-bottom: 1px solid #ff6ec7;
+    margin-bottom: 10px;
 }
 
 #stats-container .game-record:last-child {
     border-bottom: none;
+}
+
+#admin-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #24243e;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    margin-top: auto;
+    padding: 10px;
+    background: #0f0c29;
+    color: #ffffff;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
 }

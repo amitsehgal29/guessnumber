@@ -51,13 +51,18 @@ const isAdmin = (req, res, next) => {
 // API endpoint to save game logs
 app.post('/api/games', async (req, res) => {
     const { playerName, attempts, won } = req.body;
+
+    if (!playerName || playerName.trim() === '') {
+        return res.status(400).json({ error: 'Player name is required' });
+    }
+
     const insertQuery = `
         INSERT INTO game_logs (player_name, attempts, won)
         VALUES ($1, $2, $3)
         RETURNING *;
     `;
     try {
-        const result = await pool.query(insertQuery, [playerName, attempts, won]);
+        const result = await pool.query(insertQuery, [playerName.trim(), attempts, won]);
         res.json(result.rows[0]);
     } catch (error) {
         res.status(500).json({ error: 'Failed to save game log' });

@@ -23,6 +23,11 @@ let gameStats = [];
 
 // Event Listeners
 loginBtn.addEventListener('click', handleLogin);
+adminPassword.addEventListener('keyup', (event) => {
+    if (event.key === 'Enter') {
+        handleLogin();
+    }
+});
 exportBtn.addEventListener('click', exportData);
 clearBtn.addEventListener('click', clearData);
 applyFiltersBtn.addEventListener('click', loadStats);
@@ -52,6 +57,13 @@ async function loadStats() {
         }
 
         const games = await gamesResponse.json();
+
+        // Ensure playerName is defined
+        games.forEach(game => {
+            if (!game.playerName) {
+                game.playerName = 'Unknown Player';
+            }
+        });
 
         displayStats(games);
         updateSummary(games);

@@ -45,6 +45,8 @@ startGameButton.addEventListener('click', () => {
         playerRegistration.classList.add('hidden');
         gameContainer.classList.remove('hidden');
         initializeGame();
+    } else {
+        alert('Please enter a valid player name.');
     }
 });
 
