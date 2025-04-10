@@ -24,6 +24,11 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
 }
 
 header, footer {
@@ -77,6 +82,7 @@ input, button {
     margin-bottom: 20px;
     width: 100%;
     max-width: 400px;
+    margin: 10px 0;
 }
 
 input:focus {
@@ -306,4 +312,15 @@ footer {
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #6e6e73;
+}
+
+/* Add responsive design for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    input, button {
+        width: 90%;
+    }
 }

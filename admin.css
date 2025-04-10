@@ -114,3 +114,23 @@ input:focus {
     max-width: 800px;
     width: 90%;
 }
+
+/* Ensure proper alignment and spacing for the admin panel */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Add responsive design for smaller screens */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    input, button {
+        width: 90%;
+    }
+}

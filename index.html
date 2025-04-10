@@ -13,15 +13,15 @@
     <main class="container">
         <section id="player-registration">
             <h2>Register Player</h2>
-            <input type="text" id="player-name" placeholder="Enter Your Name">
+            <input type="text" id="player-name" placeholder="Enter Your Name" aria-label="Player Name">
             <button id="start-game">Start Game</button>
         </section>
         <section id="game-container" class="hidden">
             <h2>Game On!</h2>
             <p id="player-display"></p>
-            <input type="number" placeholder="Enter your guess">
+            <input type="number" placeholder="Enter your guess" aria-label="Guess Input">
             <button id="guess-btn">Guess</button>
-            <p id="message"></p>
+            <p id="message" role="alert"></p>
             <button id="next-game" class="hidden">Next Game</button>
         </section>
     </main>
