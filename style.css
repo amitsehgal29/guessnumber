@@ -9,6 +9,11 @@ body {
     margin: 0;
 }
 
+/* Add a rule to fix overlapping borders by collapsing them */
+* {
+    border-collapse: collapse;
+}
+
 .lego-container {
     background: #e0e0e0; /* Flat light gray */
     border: 2px solid #808080; /* Classic border */
