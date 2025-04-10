@@ -39,9 +39,6 @@ input {
     font-size: 1rem;
     border-radius: 0;
     margin-bottom: 10px;
-    width: 300px; /* Increased width */
-    height: 40px; /* Increased height */
-    box-sizing: border-box; /* Ensure padding doesn't affect final size */
 }
 
 input:focus {
