@@ -1,7 +1,5 @@
-// API Configuration
-const API_URL = window.location.hostname === 'localhost' 
-    ? 'http://localhost:3000' 
-    : 'https://guessnumber-production.up.railway.app';
+// Updated API URL to point to the Render-hosted backend
+const API_URL = 'https://guessnumber-1e1p.onrender.com';
 
 // Game elements
 const playerRegistration = document.getElementById('player-registration');
