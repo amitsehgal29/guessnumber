@@ -1,27 +1,41 @@
-let randomNumber = Math.floor(Math.random() * 100) + 1;
+const container = document.querySelector('.lego-container');
+const input = document.querySelector('input');
+const button = document.querySelector('button');
+const message = document.querySelector('#message');
+
+// Generate random number between 1-100
+let targetNumber = Math.floor(Math.random() * 100) + 1;
 let attempts = 0;
 
-document.getElementById('guessButton').addEventListener('click', () => {
-    const userGuess = parseInt(document.getElementById('guessInput').value);
-    const message = document.getElementById('message');
-    const attemptsDisplay = document.getElementById('attempts');
+button.addEventListener('click', checkGuess);
+input.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') checkGuess();
+});
+
+function checkGuess() {
+    const guess = Number(input.value);
+    
+    if (guess < 1 || guess > 100 || isNaN(guess)) {
+        message.textContent = 'Please enter a valid number between 1 and 100';
+        return;
+    }
+
     attempts++;
-
-    if (userGuess < randomNumber) {
-        message.textContent = 'Your guess is lower, please try again.';
-    } else if (userGuess > randomNumber) {
-        message.textContent = 'Your guess is higher, please try again.';
+    
+    if (guess === targetNumber) {
+        container.classList.add('success');
+        message.textContent = `Congratulations! You got it in ${attempts} attempts!`;
+        
+        setTimeout(() => {
+            container.classList.remove('success');
+            targetNumber = Math.floor(Math.random() * 100) + 1;
+            input.value = '';
+            message.textContent = 'New game! Start guessing...';
+            attempts = 0;
+        }, 1500);
     } else {
-        message.textContent = `Correct guess! You took ${attempts} chances.`;
+        message.textContent = guess < targetNumber ? 
+            'Too low! Try a higher number.' : 
+            'Too high! Try a lower number.';
     }
-
-    attemptsDisplay.textContent = `Attempts: ${attempts}`;
-});
-
-// Add event listener for Enter key
-document.querySelector('input').addEventListener('keypress', function(event) {
-    if (event.key === 'Enter') {
-        event.preventDefault(); // Prevent form submission if within a form
-        document.querySelector('button').click();
-    }
-});
+}
