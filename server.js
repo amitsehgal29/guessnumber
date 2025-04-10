@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const path = require('path');
-const fs = require('fs');
+const { Pool } = require('pg');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,48 +10,65 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
-// Logs file setup
-const logsFilePath = path.join(__dirname, 'game_logs.txt');
+// PostgreSQL connection setup
+const pool = new Pool({
+    connectionString: 'postgresql://amitsehgal:nsbYRXM5gknlKorLf3GsSF7saBuwp9m2@dpg-cvs1tbidbo4c73fshamg-a.singapore-postgres.render.com/guessgame',
+    ssl: {
+        rejectUnauthorized: false
+    }
+});
 
-// Ensure the logs file exists
-if (!fs.existsSync(logsFilePath)) {
-    fs.writeFileSync(logsFilePath, '');
-}
+// Create table if it doesn't exist
+(async () => {
+    const createTableQuery = `
+        CREATE TABLE IF NOT EXISTS game_logs (
+            id SERIAL PRIMARY KEY,
+            player_name TEXT NOT NULL,
+            attempts INTEGER NOT NULL,
+            won BOOLEAN NOT NULL,
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
+    `;
+    try {
+        await pool.query(createTableQuery);
+        console.log('Table created or already exists.');
+    } catch (error) {
+        console.error('Error creating table:', error);
+    }
+})();
 
 // API endpoint to save game logs
-app.post('/api/games', (req, res) => {
+app.post('/api/games', async (req, res) => {
     const { playerName, attempts, won } = req.body;
-    const logEntry = {
-        playerName,
-        attempts,
-        won,
-        timestamp: new Date().toISOString()
-    };
+    const insertQuery = `
+        INSERT INTO game_logs (player_name, attempts, won)
+        VALUES ($1, $2, $3)
+        RETURNING *;
+    `;
     try {
-        fs.appendFileSync(logsFilePath, JSON.stringify(logEntry) + '\n');
-        res.json({ message: 'Game log saved successfully' });
+        const result = await pool.query(insertQuery, [playerName, attempts, won]);
+        res.json(result.rows[0]);
     } catch (error) {
         res.status(500).json({ error: 'Failed to save game log' });
     }
 });
 
 // API endpoint to retrieve game logs
-app.get('/api/games', (req, res) => {
+app.get('/api/games', async (req, res) => {
+    const selectQuery = 'SELECT * FROM game_logs ORDER BY timestamp DESC';
     try {
-        const logs = fs.readFileSync(logsFilePath, 'utf-8')
-            .split('\n')
-            .filter(line => line.trim() !== '')
-            .map(line => JSON.parse(line));
-        res.json(logs);
+        const result = await pool.query(selectQuery);
+        res.json(result.rows);
     } catch (error) {
         res.status(500).json({ error: 'Failed to retrieve game logs' });
     }
 });
 
 // API endpoint to clear game logs
-app.delete('/api/games', (req, res) => {
+app.delete('/api/games', async (req, res) => {
+    const deleteQuery = 'DELETE FROM game_logs';
     try {
-        fs.writeFileSync(logsFilePath, '');
+        await pool.query(deleteQuery);
         res.json({ message: 'All game logs cleared successfully' });
     } catch (error) {
         res.status(500).json({ error: 'Failed to clear game logs' });
