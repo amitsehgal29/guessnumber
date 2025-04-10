@@ -12,23 +12,15 @@
         <h1>Welcome to Number Game</h1>
         <input type="text" id="player-name" placeholder="Enter your name" required>
         <button id="start-game">Start Game</button>
-        <button id="view-stats">View Game History</button>
     </div>
     <div id="game-container" class="lego-container hidden">
         <h1>Welcome <span id="player-display"></span>!</h1>
         <div class="attempts-display">Attempts: <span id="attempts">0</span></div>
-        <input type="number" pattern="[0-9]*" inputmode="numeric" maxlength="3" placeholder="Enter a number between 1-100" required style="appearance: none;">
+        <label for="number-input">Enter a number between 1-100</label>
+        <input id="number-input" type="number" pattern="[0-9]*" inputmode="numeric" maxlength="3" required style="appearance: none;">
         <button id="guess-btn">Guess!</button>
         <p id="message">Start guessing...</p>
         <button id="next-game" class="hidden">Play Again</button>
-        <button id="view-stats-ingame">View Game History</button>
-    </div>
-    <div id="stats-modal" class="modal hidden">
-        <div class="modal-content">
-            <h2>Game History</h2>
-            <div id="stats-container"></div>
-            <button id="close-stats">Close</button>
-        </div>
     </div>
     <audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
     <audio id="errorSound" src="https://assets.mixkit.co/active_storage/sfx/2744/2744-preview.mp3"></audio>

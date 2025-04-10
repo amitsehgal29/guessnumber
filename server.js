@@ -38,6 +38,16 @@ const pool = new Pool({
     }
 })();
 
+// Middleware to check if the user is an admin
+const isAdmin = (req, res, next) => {
+    const adminKey = req.headers['x-admin-key']; // Admin key sent in request headers
+    if (adminKey === 'your-secure-admin-key') {
+        next();
+    } else {
+        res.status(403).json({ error: 'Access denied' });
+    }
+};
+
 // API endpoint to save game logs
 app.post('/api/games', async (req, res) => {
     const { playerName, attempts, won } = req.body;
@@ -55,7 +65,7 @@ app.post('/api/games', async (req, res) => {
 });
 
 // API endpoint to retrieve game logs
-app.get('/api/games', async (req, res) => {
+app.get('/api/games', isAdmin, async (req, res) => {
     const selectQuery = 'SELECT * FROM game_logs ORDER BY timestamp DESC';
     try {
         const result = await pool.query(selectQuery);

@@ -50,6 +50,12 @@ startGameButton.addEventListener('click', () => {
     }
 });
 
+playerNameInput.addEventListener('keyup', (e) => {
+    if (e.key === 'Enter') {
+        startGameButton.click();
+    }
+});
+
 guessButton.addEventListener('click', checkGuess);
 input.addEventListener('keyup', (e) => {
     if (e.key === 'Enter') checkGuess();
