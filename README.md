@@ -49,6 +49,58 @@ Make sure to:
 2. Configure your database path
 3. Update CORS settings for your domain
 
+## Deployment on Render.com (Free)
+
+1. Fork/Push this repository to your GitHub account
+
+2. Go to [Render.com](https://render.com) and create a free account
+
+3. In your Render dashboard:
+   - Click "New +"
+   - Select "Web Service"
+   - Connect your GitHub repository
+   - Select the repository with this game
+
+4. Configure the deployment:
+   - Name: `guess-number-game` (or your preferred name)
+   - Environment: `Node`
+   - Build Command: `npm install`
+   - Start Command: `node server.js`
+   - Select the free plan
+
+5. Click "Create Web Service"
+
+Your game will be deployed and accessible at: `https://your-app-name.onrender.com`
+
+Note: The free tier includes:
+- 750 hours of runtime per month
+- 500MB storage
+- Automatic HTTPS/SSL
+- Continuous deployment from GitHub
+
+## Deployment on Cyclic.sh (Free)
+
+1. Push your code to a GitHub repository if you haven't already
+
+2. Go to [Cyclic.sh](https://www.cyclic.sh/) and:
+   - Sign in with your GitHub account
+   - Click "Deploy Now"
+   - Select your repository
+   - Click "Connect"
+   - Click "Deploy"
+
+3. Once deployed, your app will be available at `https://your-app-name.cyclic.app`
+
+The free tier on Cyclic.sh includes:
+- Unlimited deployments
+- Automatic HTTPS
+- Continuous deployment from GitHub
+- 1GB storage
+- No cold starts
+- 24/7 operation
+
+Note: The database will be stored in the `/tmp` directory which is writable on Cyclic.sh.
+
 ## Project Structure
 
 - `server.js` - Node.js/Express server handling database operations

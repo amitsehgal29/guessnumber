@@ -1,3 +1,8 @@
+// API Configuration
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : 'https://guessnumber.cyclic.app';
+
 // Admin password hash (this is a simple example - in production use proper authentication)
 const ADMIN_PASSWORD = '1234'; // Change this to your desired password
 
@@ -43,8 +48,8 @@ async function loadStats() {
         if (dateFilter.value) params.append('date', dateFilter.value);
 
         const [gamesResponse, statsResponse] = await Promise.all([
-            fetch(`http://localhost:3000/api/games?${params}`),
-            fetch('http://localhost:3000/api/stats')
+            fetch(`${API_URL}/api/games?${params}`),
+            fetch(`${API_URL}/api/stats`)
         ]);
 
         if (!gamesResponse.ok || !statsResponse.ok) {
@@ -105,7 +110,7 @@ function resetFilters() {
 
 async function exportData() {
     try {
-        const response = await fetch('http://localhost:3000/api/games');
+        const response = await fetch(`${API_URL}/api/games`);
         if (!response.ok) {
             throw new Error('Failed to fetch data');
         }
@@ -128,7 +133,7 @@ async function exportData() {
 async function clearData() {
     if (confirm('Are you sure you want to clear all game statistics? This cannot be undone.')) {
         try {
-            const response = await fetch('http://localhost:3000/api/games', {
+            const response = await fetch(`${API_URL}/api/games`, {
                 method: 'DELETE'
             });
             if (!response.ok) {

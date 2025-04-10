@@ -1,3 +1,8 @@
+// API Configuration
+const API_URL = window.location.hostname === 'localhost' 
+    ? 'http://localhost:3000' 
+    : 'https://guessnumber.cyclic.app';
+
 // Game elements
 const playerRegistration = document.getElementById('player-registration');
 const gameContainer = document.getElementById('game-container');
@@ -58,7 +63,7 @@ nextGameButton.addEventListener('click', () => {
 // Record game stats
 async function recordGameStats(won) {
     try {
-        const response = await fetch('http://localhost:3000/api/games', {
+        const response = await fetch(`${API_URL}/api/games`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

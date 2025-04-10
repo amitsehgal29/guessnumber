@@ -4,15 +4,19 @@ const Database = require('better-sqlite3');
 const path = require('path');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
 app.use(express.static('.'));
 
-// Database setup
-const db = new Database('game_records.db');
+// Database setup - Cyclic.sh uses the tmp directory for writable storage
+const dbPath = process.env.NODE_ENV === 'production' 
+  ? path.join('/tmp', 'game_records.db')
+  : path.join(__dirname, 'game_records.db');
+
+const db = new Database(dbPath);
 
 // Create tables if they don't exist
 db.exec(`
