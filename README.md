@@ -101,6 +101,35 @@ The free tier on Cyclic.sh includes:
 
 Note: The database will be stored in the `/tmp` directory which is writable on Cyclic.sh.
 
+## Deployment on Railway.app (Free)
+
+1. Push your code to a GitHub repository if you haven't already
+
+2. Go to [Railway.app](https://railway.app/) and:
+   - Sign in with your GitHub account
+   - Click "New Project"
+   - Choose "Deploy from GitHub repo"
+   - Select your repository
+   - Click "Deploy Now"
+
+3. Set up the persistent volume:
+   - Go to your project settings
+   - Click "Add Volume"
+   - Set mount path to `/data`
+   - Click "Add Volume"
+
+4. Your app will be available at the URL provided by Railway.app
+
+The free tier on Railway.app includes:
+- $5 worth of resources per month
+- Automatic HTTPS
+- Continuous deployment from GitHub
+- Persistent storage
+- Custom domains
+- Zero cold starts
+
+Note: The database is stored in a persistent volume mounted at `/data`.
+
 ## Project Structure
 
 - `server.js` - Node.js/Express server handling database operations

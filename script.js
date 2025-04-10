@@ -1,7 +1,7 @@
 // API Configuration
 const API_URL = window.location.hostname === 'localhost' 
     ? 'http://localhost:3000' 
-    : 'https://guessnumber.cyclic.app';
+    : 'https://guessnumber-production.up.railway.app';
 
 // Game elements
 const playerRegistration = document.getElementById('player-registration');
