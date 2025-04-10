@@ -47,6 +47,22 @@ function updateAttempts() {
     attemptsDisplay.textContent = attempts;
 }
 
+function wrongGuess(guess) {
+    const errorSound = document.getElementById('errorSound');
+    errorSound.play();
+    
+    container.classList.add('shake');
+    setTimeout(() => container.classList.remove('shake'), 500);
+    
+    if (guess < targetNumber) {
+        message.className = 'message-low';
+        message.textContent = 'Too low! Try a higher number.';
+    } else {
+        message.className = 'message-high';
+        message.textContent = 'Too high! Try a lower number.';
+    }
+}
+
 function checkGuess() {
     const guessText = input.value.trim();
     
@@ -79,8 +95,6 @@ function checkGuess() {
             updateAttempts();
         }, 2000); // Increased delay to allow for celebration
     } else {
-        message.textContent = guess < targetNumber ? 
-            'Too low! Try a higher number.' : 
-            'Too high! Try a lower number.';
+        wrongGuess(guess);
     }
 }
