@@ -1,0 +1,47 @@
+.admin-stats {
+    max-height: 500px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+.stats-filters {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.stats-summary {
+    background: rgba(0, 172, 193, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.admin-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    color: #EF5350;
+    margin-top: 10px;
+}
+
+.game-record {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    align-items: center;
+}
+
+#login-container {
+    max-width: 300px;
+}
+
+#admin-panel {
+    max-width: 800px;
+    width: 90%;
+}

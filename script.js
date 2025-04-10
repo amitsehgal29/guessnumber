@@ -56,15 +56,25 @@ nextGameButton.addEventListener('click', () => {
 });
 
 // Record game stats
-function recordGameStats(won) {
-    gameStats.push({
-        playerName: currentPlayer,
-        timestamp: new Date().toISOString(),
-        attempts: attempts,
-        won: won
-    });
-    // Store in localStorage
-    localStorage.setItem('numberGameStats', JSON.stringify(gameStats));
+async function recordGameStats(won) {
+    try {
+        const response = await fetch('http://localhost:3000/api/games', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                playerName: currentPlayer,
+                attempts: attempts,
+                won: won
+            })
+        });
+        if (!response.ok) {
+            throw new Error('Failed to save game record');
+        }
+    } catch (error) {
+        console.error('Error saving game record:', error);
+    }
 }
 
 function celebrateWin() {

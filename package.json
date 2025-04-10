@@ -1,0 +1,26 @@
+{
+  "name": "guess-number",
+  "version": "1.0.0",
+  "description": "A modern and interactive number guessing game built with HTML, CSS, and JavaScript",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitsehgal29/guessnumber.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitsehgal29/guessnumber/issues"
+  },
+  "homepage": "https://github.com/amitsehgal29/guessnumber#readme",
+  "dependencies": {
+    "better-sqlite3": "^8.3.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
