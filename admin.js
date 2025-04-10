@@ -58,11 +58,9 @@ async function loadStats() {
 
         const games = await gamesResponse.json();
 
-        // Ensure playerName is defined
+        // Map player_name from DB to playerName for consistency
         games.forEach(game => {
-            if (!game.playerName) {
-                game.playerName = 'Unknown Player';
-            }
+            game.playerName = game.player_name || 'Unknown Player';
         });
 
         displayStats(games);

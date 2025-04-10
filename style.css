@@ -1,6 +1,6 @@
 /* Consistent Neon Theme for All Pages */
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
     background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
     color: #ffffff;
     margin: 0;
@@ -15,6 +15,14 @@ body {
 /* Add a rule to fix overlapping borders by collapsing them */
 * {
     border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    padding: 20px;
+    margin: 20px;
 }
 
 .lego-container {
@@ -32,8 +40,9 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #ff6ec7;
-    text-shadow: 0 0 10px #ff6ec7, 0 0 20px #ff6ec7;
+    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
+    color: #ff6600;
+    text-shadow: 2px 2px #000;
 }
 
 input {
@@ -65,21 +74,29 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0; /* Remove margin */
 }
 
-button {
-    background: linear-gradient(45deg, #ff6ec7, #ffc107);
-    color: #ffffff;
-    border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+#admin-password {
     font-size: 1rem;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+    border: 2px solid #ccc;
+}
+
+button {
+    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    border-radius: 10px;
+    background-color: #ffcc00;
+    color: #000;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: transform 0.2s;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
 }
 
 #next-game {
@@ -88,6 +105,10 @@ button:hover {
 
 #next-game:hover {
     background: linear-gradient(45deg, #4DB6AC, #80CBC4);
+}
+
+form > * {
+    margin-bottom: 15px;
 }
 
 p {
@@ -243,6 +264,10 @@ p {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+section {
+    margin-bottom: 30px;
 }
 
 footer {
