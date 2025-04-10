@@ -3,40 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Game Admin</title>
+    <title>Admin Panel</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="admin.css">
 </head>
 <body>
-    <div id="login-container" class="lego-container">
-        <h1>Admin Login</h1>
-        <input type="password" id="admin-password" placeholder="Enter admin password" required>
-        <button id="login-btn">Login</button>
-        <p id="login-message" class="error-message"></p>
-    </div>
-
-    <div id="admin-panel" class="lego-container hidden">
-        <h1>Game Statistics Dashboard</h1>
-        <div class="admin-controls">
-            <button id="export-stats">Export Data</button>
-            <button id="clear-stats">Clear All Data</button>
-        </div>
-        
-        <div class="stats-summary">
-            <h2>Summary</h2>
-            <div id="summary-container"></div>
-        </div>
-
-        <div class="stats-filters">
-            <input type="text" id="player-filter" placeholder="Filter by player name">
-            <input type="date" id="date-filter">
-            <button id="apply-filters">Apply Filters</button>
-            <button id="reset-filters">Reset</button>
-        </div>
-
-        <div id="stats-container" class="admin-stats"></div>
-    </div>
-
+    <header>
+        <h1>Admin Panel</h1>
+    </header>
+    <main id="admin-panel" class="container">
+        <section id="login-container">
+            <h2>Login</h2>
+            <input type="password" id="admin-password" placeholder="Enter Admin Password">
+            <button id="login-btn">Login</button>
+            <p id="login-message"></p>
+        </section>
+        <section id="stats-container" class="hidden">
+            <h2>Game Statistics</h2>
+            <!-- Stats will be dynamically loaded here -->
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Guess Number Game</p>
+    </footer>
     <script src="admin.js"></script>
 </body>
 </html>

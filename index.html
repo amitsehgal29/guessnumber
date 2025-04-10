@@ -3,28 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Guessing Game</title>
+    <title>Guess Number Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <canvas id="confetti"></canvas>
-    <div id="player-registration" class="lego-container">
-        <h1>Welcome to Number Game</h1>
-        <input type="text" id="player-name" placeholder="Enter your name" required>
-        <button id="start-game">Start Game</button>
-    </div>
-    <div id="game-container" class="lego-container hidden">
-        <h1>Welcome <span id="player-display"></span>!</h1>
-        <div class="attempts-display">Attempts: <span id="attempts">0</span></div>
-        <label for="number-input">Enter a number between 1-100</label>
-        <input id="number-input" type="number" pattern="[0-9]*" inputmode="numeric" maxlength="3" required style="appearance: none;">
-        <button id="guess-btn">Guess!</button>
-        <p id="message">Start guessing...</p>
-        <button id="next-game" class="hidden">Play Again</button>
-    </div>
-    <audio id="winSound" src="https://assets.mixkit.co/active_storage/sfx/2013/2013-preview.mp3"></audio>
-    <audio id="errorSound" src="https://assets.mixkit.co/active_storage/sfx/2223/2223-preview.mp3"></audio>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <header>
+        <h1>Guess Number Game</h1>
+    </header>
+    <main class="container">
+        <section id="player-registration">
+            <h2>Register Player</h2>
+            <input type="text" id="player-name" placeholder="Enter Your Name">
+            <button id="start-game">Start Game</button>
+        </section>
+        <section id="game-container" class="hidden">
+            <h2>Game On!</h2>
+            <p id="player-display"></p>
+            <input type="number" placeholder="Enter your guess">
+            <button id="guess-btn">Guess</button>
+            <p id="message"></p>
+            <button id="next-game" class="hidden">Next Game</button>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Guess Number Game</p>
+    </footer>
     <script src="script.js"></script>
 </body>
 </html>

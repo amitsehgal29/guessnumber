@@ -1,8 +1,8 @@
-/* Consistent Neon Theme for All Pages */
+/* Apple-inspired minimalist design */
 body {
-    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
-    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-    color: #ffffff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f5f5f7;
+    color: #1d1d1f;
     margin: 0;
     padding: 0;
     display: flex;
@@ -21,8 +21,24 @@ body {
 }
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    margin: 20px;
+}
+
+header, footer {
+    width: 100%;
+    padding: 20px 0;
+    background-color: #ffffff;
+    border: 1px solid #d2d2d7;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1, footer p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1d1d1f;
 }
 
 .lego-container {
@@ -40,27 +56,33 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
-    color: #ff6600;
-    text-shadow: 2px 2px #000;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 20px;
 }
 
-input {
-    background: #24243e;
-    color: #ffffff;
-    border: 1px solid #ff6ec7;
-    border-radius: 5px;
-    padding: 10px;
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin-bottom: 20px;
+}
+
+input, button {
+    font-family: inherit;
     font-size: 1rem;
-    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #d2d2d7;
+    border-radius: 8px;
+    margin-bottom: 20px;
     width: 100%;
-    max-width: 300px;
+    max-width: 400px;
 }
 
 input:focus {
     outline: none;
-    border-color: #ffc107;
-    box-shadow: 0 0 10px #ffc107;
+    border-color: #0071e3;
+    box-shadow: 0 0 5px rgba(0, 113, 227, 0.5);
 }
 
 input[type="number"] {
@@ -83,20 +105,14 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 button {
-    font-family: 'Comic Sans MS', 'Chalkboard', sans-serif;
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    border: 2px solid #000;
-    border-radius: 10px;
-    background-color: #ffcc00;
-    color: #000;
+    background-color: #0071e3;
+    color: #ffffff;
     cursor: pointer;
-    transition: transform 0.2s;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
-    transform: scale(1.1);
+    background-color: #005bb5;
 }
 
 #next-game {
@@ -177,6 +193,13 @@ p {
 }
 
 #game-container {
+    background-color: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    padding: 20px;
+    max-height: 400px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.5s ease, background-color 0.5s ease;
 }
 
@@ -237,18 +260,18 @@ p {
 }
 
 #stats-container {
-    background: #302b63;
-    border: 1px solid #ff6ec7;
-    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
     padding: 20px;
     max-height: 400px;
     overflow-y: auto;
-    color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #stats-container .game-record {
     padding: 10px;
-    border-bottom: 1px solid #ff6ec7;
+    border-bottom: 1px solid #d2d2d7;
     margin-bottom: 10px;
 }
 
@@ -260,22 +283,27 @@ p {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background: #24243e;
+    background-color: #ffffff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 section {
-    margin-bottom: 30px;
+    background-color: #ffffff;
+    border: 1px solid #d2d2d7;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 footer {
-    margin-top: auto;
-    padding: 10px;
-    background: #0f0c29;
-    color: #ffffff;
-    text-align: center;
     width: 100%;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px 0;
+    background-color: #ffffff;
+    border: 1px solid #d2d2d7;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: #6e6e73;
 }
