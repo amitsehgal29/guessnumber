@@ -54,11 +54,10 @@ input {
 }
 
 input:focus {
-    background: #fff;
-    border-color: #00ACC1;
-    box-shadow: 0 0 20px rgba(0, 172, 193, 0.2);
-    transform: scale(1.02);
     outline: none;
+    border: 2px solid #4caf50;
+    box-shadow: 0 0 10px #4caf50;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
 }
 
 input[type="number"] {
@@ -153,21 +152,32 @@ p {
 @keyframes shake {
     0%, 100% { transform: translateX(0); }
     25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
+    50% { transform: translateX(10px); }
+    75% { transform: translateX(-10px); }
 }
 
 .shake {
     animation: shake 0.5s ease-in-out;
 }
 
+#game-container {
+    transition: transform 0.5s ease, background-color 0.5s ease;
+}
+
+#game-container.shake {
+    animation: shake 0.5s;
+}
+
 .message-high {
-    color: #EF5350;
+    color: #ff4d4d;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 .message-low {
-    color: #66BB6A;
+    color: #ff4d4d;
     font-weight: bold;
+    transition: color 0.3s ease;
 }
 
 #player-display {
