@@ -531,6 +531,38 @@ footer {
     flex: 1;
 }
 
+.game-instructions {
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 500px;
+}
+
+.game-instructions h3 {
+    color: #00ffff;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.game-instructions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.game-instructions li {
+    color: #00ffff;
+    padding: 8px 0;
+    font-size: 0.95rem;
+    text-align: left;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
 /* Add responsive design for smaller screens */
 @media (max-width: 600px) {
     .container {
@@ -539,5 +571,15 @@ footer {
 
     input, button {
         width: 90%;
+    }
+
+    .game-instructions {
+        padding: 15px;
+        margin: 15px 0;
+    }
+    
+    .game-instructions li {
+        font-size: 0.9rem;
+        padding: 6px 0;
     }
 }
