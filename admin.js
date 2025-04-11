@@ -1,4 +1,6 @@
 // API Configuration
+c//onst API_URL = 'http://localhost:3000';
+// Uncomment the line below for production
 const API_URL = 'https://guessnumber-1e1p.onrender.com';
 
 // Admin password hash (this is a simple example - in production use proper authentication)
@@ -96,7 +98,7 @@ function displayStats(games) {
         const div = document.createElement('div');
         div.className = 'game-record';
         div.innerHTML = `
-            <div><strong>Player:</strong> ${game.player_name}</div>
+            <div><strong>Player:</strong> ${game.player_name || game.playerName}</div>
             <div><strong>Date:</strong> ${formatDate(game.timestamp)}</div>
             <div><strong>Attempts:</strong> ${game.attempts}</div>
             <div><strong>Result:</strong> ${game.won ? 'Won' : 'Gave up'}</div>
