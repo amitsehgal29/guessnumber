@@ -3,27 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Space Command Center</title>
+    <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
-        <h1>Admin Panel</h1>
+        <h1>🛸 Space Command Center</h1>
     </header>
-    <main id="admin-panel" class="container">
-        <section id="login-container">
-            <h2>Login</h2>
-            <input type="password" id="admin-password" placeholder="Enter Admin Password" aria-label="Admin Password">
-            <button id="login-btn">Login</button>
+    <main>
+        <section id="login-container" class="container">
+            <h2>🔐 Command Authorization</h2>
+            <div class="input-group">
+                <input type="password" id="admin-password" placeholder="Enter Command Code" aria-label="Admin Password">
+                <button id="login-btn">Access Controls</button>
+            </div>
             <p id="login-message" role="alert"></p>
         </section>
-        <section id="stats-container" class="hidden">
-            <h2>Game Statistics</h2>
-            <!-- Stats will be dynamically loaded here -->
+
+        <section id="admin-panel" class="container hidden">
+            <button id="clear-stats" class="purge-data-btn">🚫 Purge Mission Data</button>
+            <h2>📊 Intergalactic Mission Logs</h2>
+            
+            <div class="stats-filters">
+                <input type="text" id="player-filter" placeholder="Filter by player name">
+                <div class="button-group">
+                    <button id="apply-filters">Apply Filters</button>
+                    <button id="reset-filters">Reset Filters</button>
+                </div>
+            </div>
+
+            <div id="summary-container" class="stats-summary">
+                <!-- Summary will be loaded here -->
+            </div>
+
+            <div id="stats-container" class="admin-stats">
+                <!-- Stats will be loaded here -->
+            </div>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025 Guess Number Game</p>
+        <p>🌌 Space Command &copy; 2025 Intergalactic Fleet</p>
     </footer>
     <script src="admin.js"></script>
 </body>

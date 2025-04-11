@@ -19,9 +19,8 @@
   },
   "homepage": "https://github.com/amitsehgal29/guessnumber#readme",
   "dependencies": {
-    "better-sqlite3": "11.9.1",
     "cors": "2.8.5",
     "express": "4.21.2",
-    "pg": "^8.14.1"
+    "pg": "^8.11.3"
   }
 }

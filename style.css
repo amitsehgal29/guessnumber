@@ -1,8 +1,14 @@
 /* Apple-inspired minimalist design */
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f5f5f7;
-    color: #1d1d1f;
+    font-family: 'Space Mono', monospace;
+    background: #000000;
+    background-image: 
+        radial-gradient(#00ffff, rgba(0,255,255,.2) 2px, transparent 40px),
+        radial-gradient(#00ffff, rgba(0,255,255,.15) 1px, transparent 30px),
+        radial-gradient(#00ffff, rgba(0,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    color: #00ffff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -10,6 +16,8 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    position: relative;
+    overflow: hidden;
 }
 
 /* Add a rule to fix overlapping borders by collapsing them */
@@ -22,6 +30,7 @@ body {
 
 .container {
     max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -29,31 +38,49 @@ body {
     align-items: center;
     justify-content: center;
     gap: 20px;
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+#player-registration, #game-container {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 
 header, footer {
     width: 100%;
     padding: 20px 0;
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
 }
 
 header h1, footer p {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1d1d1f;
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 .lego-container {
-    background: #FFFFFF;
-    border: 5px dashed #FF9800;
+    background: rgba(20, 20, 60, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(88, 88, 255, 0.3);
     border-radius: 20px;
-    padding: 20px;
+    padding: 30px;
     text-align: center;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 30px rgba(88, 88, 255, 0.2);
     max-width: 400px;
+    position: relative;
+    transition: all 0.3s ease;
 }
 
 .hidden {
@@ -62,33 +89,35 @@ header h1, footer p {
 
 h1, h2, h3, h4, h5, h6 {
     font-weight: 600;
-    color: #1d1d1f;
+    color: #00ffff;
     margin-bottom: 20px;
 }
 
 h2 {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1d1d1f;
+    color: #00ffff;
     margin-bottom: 20px;
 }
 
-input, button {
-    font-family: inherit;
+input {
+    background: rgba(0, 0, 0, 0.6);
+    color: #00ffff;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 12px;
     font-size: 1rem;
-    padding: 10px;
-    border: 1px solid #d2d2d7;
-    border-radius: 8px;
-    margin-bottom: 20px;
     width: 100%;
-    max-width: 400px;
-    margin: 10px 0;
+    max-width: 300px;
+    margin: 10px auto;
+    transition: all 0.3s ease;
 }
 
 input:focus {
     outline: none;
-    border-color: #0071e3;
-    box-shadow: 0 0 5px rgba(0, 113, 227, 0.5);
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    background: rgba(0, 20, 20, 0.8);
 }
 
 input[type="number"] {
@@ -110,23 +139,151 @@ input[type="number"]::-webkit-outer-spin-button {
     border: 2px solid #ccc;
 }
 
+/* Base button styles */
 button {
-    background-color: #0071e3;
-    color: #ffffff;
+    background: linear-gradient(45deg, #004466, #006699);
+    color: #00ffff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 300px;
+    margin: 10px auto;
 }
 
 button:hover {
-    background-color: #005bb5;
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
+button:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+button:hover:before {
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+/* Disabled button and input styles */
+button:disabled,
+input:disabled {
+    background: linear-gradient(45deg, #333333, #444444);
+    cursor: not-allowed;
+    opacity: 0.6;
+    transform: none;
+}
+
+button:disabled:hover {
+    transform: none;
+    box-shadow: none;
+    background: linear-gradient(45deg, #333333, #444444);
+}
+
+button:disabled:before {
+    display: none;
+}
+
+/* Start game button - Launch theme */
+#start-game {
+    background: linear-gradient(45deg, #005577, #0088aa);
+}
+
+#start-game:hover {
+    background: linear-gradient(45deg, #006688, #0099bb);
+}
+
+/* Guess button - Action theme */
+#guess-btn {
+    background: linear-gradient(45deg, #004466, #006699);
+}
+
+#guess-btn:hover {
+    background: linear-gradient(45deg, #005577, #0077aa);
+}
+
+/* Next game button - Success theme */
 #next-game {
-    background: linear-gradient(45deg, #26A69A, #4DB6AC);
+    background: linear-gradient(45deg, #006644, #009966);
+    margin-top: 5px;
+    animation: highlight-pulse 2s infinite;
 }
 
 #next-game:hover {
-    background: linear-gradient(45deg, #4DB6AC, #80CBC4);
+    background: linear-gradient(45deg, #007755, #00aa77);
+}
+
+@keyframes highlight-pulse {
+    0% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+    50% { box-shadow: 0 0 30px rgba(0, 255, 255, 0.8); }
+    100% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.4); }
+}
+
+/* Login button - Secure theme */
+#login-btn {
+    background: linear-gradient(45deg, #444466, #666699);
+}
+
+#login-btn:hover {
+    background: linear-gradient(45deg, #555577, #7777aa);
+}
+
+/* Export stats button - Data theme */
+#export-stats {
+    background: linear-gradient(45deg, #445566, #667788);
+}
+
+#export-stats:hover {
+    background: linear-gradient(45deg, #556677, #778899);
+}
+
+/* Clear stats button - Warning theme */
+#clear-stats {
+    background: linear-gradient(45deg, #664444, #996666);
+}
+
+#clear-stats:hover {
+    background: linear-gradient(45deg, #775555, #aa7777);
+}
+
+/* Mute button special styling */
+.mute-button {
+    background: linear-gradient(45deg, #333344, #555566);
+    width: 40px;
+    height: 40px;
+    padding: 5px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    cursor: pointer;
+    z-index: 10;
+    margin: 0;
+}
+
+.mute-button:hover {
+    background: linear-gradient(45deg, #444455, #666677);
+    transform: scale(1.1);
 }
 
 form > * {
@@ -135,7 +292,7 @@ form > * {
 
 p {
     font-size: 1.1rem;
-    color: #00838F;
+    color: #00ffff;
     font-family: 'Segoe UI', sans-serif;
     margin: 15px 0;
 }
@@ -151,24 +308,28 @@ p {
 }
 
 .success {
-    animation: successFlash 1.5s ease, bounce 0.5s ease;
-    background: linear-gradient(135deg, #E0F7FA, #B2EBF2);
-    transition: transform 0.5s ease;
-    transform: scale(1.05);
+    animation: success-flash 1.5s ease;
+    background: rgba(0, 255, 255, 0.2);
+    border-color: rgba(0, 255, 255, 0.5);
 }
 
 .attempts-display {
-    background: #FFEB3B;
-    padding: 10px;
-    border-radius: 10px;
-    margin: 15px 0;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 8px;
+    border-radius: 8px;
+    margin: 8px 0;
     font-weight: bold;
-    color: #212121;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    color: #00ffff;
+    box-shadow: 0 4px 10px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    font-size: 0.9rem;
 }
 
 #attempts {
-    color: #00ACC1;
+    color: #00ffff;
     font-size: 1.2em;
 }
 
@@ -181,10 +342,10 @@ p {
     }
 }
 
-@keyframes successFlash {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+@keyframes success-flash {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(50, 255, 50, 0.5); }
+    50% { transform: scale(1.05); box-shadow: 0 0 30px rgba(50, 255, 50, 0.8); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(50, 255, 50, 0.5); }
 }
 
 @keyframes shake {
@@ -194,52 +355,76 @@ p {
     75% { transform: translateX(-10px); }
 }
 
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(255, 50, 50, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 50, 50, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 50, 50, 0); }
+}
+
+@keyframes pulse-green {
+    0% { box-shadow: 0 0 0 0 rgba(50, 255, 50, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(50, 255, 50, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(50, 255, 50, 0); }
+}
+
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+}
+
 .shake {
     animation: shake 0.5s ease-in-out;
 }
 
 #game-container {
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
-    border-radius: 12px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
     padding: 20px;
-    max-height: 400px;
-    overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.5s ease, background-color 0.5s ease;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
+    max-width: 400px;
+    width: 100%;
+    position: relative;
+    transition: all 0.3s ease;
+    overflow: visible;
 }
 
 #game-container.shake {
     animation: shake 0.5s;
 }
 
-.message-high {
-    font-size: 1.5rem;
-    font-weight: bold;
-    padding: 10px;
-    border-radius: 10px;
-    text-align: center;
-    animation: bounce 1s infinite;
-    background: #F44336;
-    color: #FFFFFF;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+#game-container h2 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
 }
 
-.message-low {
-    font-size: 1.5rem;
+.message-high, .message-low, #message {
+    font-size: 0.9rem;
     font-weight: bold;
-    padding: 10px;
-    border-radius: 10px;
+    padding: 5px;
+    border-radius: 6px;
     text-align: center;
-    animation: bounce 1s infinite;
-    background: #4CAF50;
-    color: #FFFFFF;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: pulse-blue 2s infinite;
+    background: rgba(0, 255, 255, 0.3);
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    border: 1px solid rgba(0, 255, 255, 0.5);
+    margin: 5px 0;
+}
+
+#game-container input,
+#game-container button {
+    margin: 5px auto;
 }
 
 #player-display {
     color: #00ACC1;
     font-weight: bold;
+    font-size: 0.9rem;
+    margin: 5px 0;
 }
 
 .modal {
@@ -256,28 +441,24 @@ p {
 }
 
 .modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 20px;
-    max-width: 80%;
-    max-height: 80vh;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    background: #000000;
+    color: #00ffff;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    box-shadow: 0 4px 20px rgba(0, 255, 255, 0.4);
 }
 
 #stats-container {
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
-    border-radius: 12px;
-    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    color: #00ffff;
+    box-shadow: 0 4px 6px rgba(0, 255, 255, 0.2);
     max-height: 400px;
     overflow-y: auto;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 #stats-container .game-record {
     padding: 10px;
-    border-bottom: 1px solid #d2d2d7;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.2);
     margin-bottom: 10px;
 }
 
@@ -289,29 +470,65 @@ p {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    background-color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.8);
     padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 255, 255, 0.2);
 }
 
 section {
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
+    background-color: rgba(0, 0, 0, 0.8);
+    border: 1px solid rgba(0, 255, 255, 0.3);
     border-radius: 12px;
     padding: 20px;
     margin-bottom: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 6px rgba(0, 255, 255, 0.2);
 }
 
 footer {
     width: 100%;
     padding: 20px 0;
-    background-color: #ffffff;
-    border: 1px solid #d2d2d7;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 255, 255, 0.2);
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
     color: #6e6e73;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.game-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.status-group {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.status-group .attempts-display {
+    margin: 0;
+    flex: 0 1 auto;
+}
+
+.status-group #player-display {
+    margin: 0;
+    flex: 1;
 }
 
 /* Add responsive design for smaller screens */

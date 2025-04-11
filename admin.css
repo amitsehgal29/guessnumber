@@ -1,53 +1,88 @@
-/* Dark theme for admin interface */
+/* Space theme for admin interface */
 body {
-    background-color: #1e1e2f;
-    color: #ffffff;
-    font-family: 'Segoe UI', sans-serif;
+    font-family: 'Space Mono', monospace;
+    background: #000000;
+    background-image: 
+        radial-gradient(#00ffff, rgba(0,255,255,.2) 2px, transparent 40px),
+        radial-gradient(#00ffff, rgba(0,255,255,.15) 1px, transparent 30px),
+        radial-gradient(#00ffff, rgba(0,255,255,.1) 2px, transparent 40px);
+    background-size: 550px 550px, 350px 350px, 250px 250px;
+    background-position: 0 0, 40px 60px, 130px 270px;
+    color: #00ffff;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    height: 100vh;
+    justify-content: center;
+    min-height: 100vh;
     margin: 0;
+    position: relative;
 }
 
 h1, h2 {
-    color: #00bcd4;
+    color: #00ffff;
     text-align: center;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    margin-bottom: 30px;
 }
 
-.lego-container {
-    background: #2a2a3d;
-    border: 1px solid #3a3a4d;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.container {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.2);
     width: 100%;
     max-width: 800px;
+    margin: 30px auto;
 }
 
 button {
-    background: linear-gradient(45deg, #00bcd4, #009688);
-    color: white;
+    background: linear-gradient(45deg, #004444, #008888);
+    color: #00ffff;
     border: none;
-    border-radius: 5px;
-    padding: 10px 20px;
+    border-radius: 10px;
+    padding: 12px 24px;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: 300px;
+    position: relative;
+    overflow: hidden;
 }
 
 button:hover {
-    background: linear-gradient(45deg, #009688, #00796b);
+    background: linear-gradient(45deg, #005555, #009999);
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(45deg);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+button:hover:before {
+    transform: rotate(45deg) translate(50%, 50%);
 }
 
 input {
-    background: #3a3a4d;
-    color: #ffffff;
-    border: 1px solid #4a4a5d;
-    border-radius: 5px;
-    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #00ffff;
+    border: 2px solid rgba(0, 255, 255, 0.5);
+    border-radius: 10px;
+    padding: 12px;
     font-size: 1rem;
     width: 100%;
     max-width: 300px;
@@ -57,71 +92,254 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #00bcd4;
-    box-shadow: 0 0 5px #00bcd4;
+    border-color: #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    background: rgba(0, 20, 20, 0.8);
 }
 
 .admin-stats {
     max-height: 500px;
     overflow-y: auto;
-    background: #2a2a3d;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    margin-top: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    margin-top: 30px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    width: 100%;
 }
 
 .stats-filters {
+    width: 100%;
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+
+.stats-filters input {
+    width: 100%;
+    max-width: 400px;
+    margin: 0;
+}
+
+.stats-filters button {
+    flex: 0 1 200px;
+    margin: 0;
 }
 
 .stats-summary {
-    background: #3a3a4d;
-    padding: 15px;
-    border-radius: 10px;
-    margin: 20px 0;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 30px 0;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+    border: 1px solid rgba(0, 255, 255, 0.3);
 }
 
-.admin-controls {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.stats-summary p {
+    margin: 15px 0;
+    font-size: 1.1rem;
 }
 
 .error-message {
-    color: #ef5350;
+    color: #ff5555;
     font-weight: bold;
     text-align: center;
     margin-top: 10px;
+    text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
 }
 
 .game-record {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 10px;
+    gap: 15px;
+    text-align: center;
+    justify-items: center;
     align-items: center;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.game-record strong {
+    color: #00ffff;
+    margin-right: 5px;
 }
 
 #login-container {
-    max-width: 300px;
-}
-
-#admin-panel {
-    max-width: 800px;
-    width: 90%;
-}
-
-/* Ensure proper alignment and spacing for the admin panel */
-.container {
+    width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 15px;
+    margin: 40px auto;
+}
+
+#admin-panel {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+}
+
+#stats-container {
+    width: 100%;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.admin-controls {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.admin-controls button {
+    flex: 0 1 200px;
+    margin: 0;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    min-height: calc(100vh - 140px); /* Account for header and footer */
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+#login-message {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.button-group {
+    width: 100%;
+    display: flex;
     justify-content: center;
     gap: 20px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    max-width: 200px;
+}
+
+/* Apply filters button - Action theme */
+#apply-filters {
+    background: linear-gradient(45deg, #004466, #006699);
+    color: #00ffff;
+}
+
+#apply-filters:hover {
+    background: linear-gradient(45deg, #005577, #0077aa);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Reset filters button - Neutral theme */
+#reset-filters {
+    background: linear-gradient(45deg, #444444, #666666);
+    color: #00ffff;
+}
+
+#reset-filters:hover {
+    background: linear-gradient(45deg, #555555, #777777);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+/* Export stats button - Data theme */
+#export-stats {
+    background: linear-gradient(45deg, #445566, #667788);
+}
+
+#export-stats:hover {
+    background: linear-gradient(45deg, #556677, #778899);
+}
+
+/* Clear stats button - Warning theme */
+#clear-stats {
+    background: linear-gradient(45deg, #990000, #cc0000);
+    color: #ff9999;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+}
+
+#clear-stats:hover {
+    background: linear-gradient(45deg, #cc0000, #ff0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+/* Purge data button */
+.purge-data-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    max-width: 200px;
+    background: linear-gradient(45deg, #990000, #cc0000);
+    color: #ff9999;
+    border: 2px solid rgba(255, 0, 0, 0.3);
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    font-size: 0.9rem;
+    padding: 10px 15px;
+}
+
+.purge-data-btn:hover {
+    background: linear-gradient(45deg, #cc0000, #ff0000);
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+/* Improve scrollbar styling */
+.admin-stats::-webkit-scrollbar {
+    width: 8px;
+}
+
+.admin-stats::-webkit-scrollbar-track {
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.admin-stats::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.admin-stats::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 255, 255, 0.5);
 }
 
 /* Add responsive design for smaller screens */
@@ -132,5 +350,9 @@ input:focus {
 
     input, button {
         width: 90%;
+    }
+
+    .game-record {
+        grid-template-columns: 1fr;
     }
 }
