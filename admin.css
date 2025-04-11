@@ -305,16 +305,16 @@ main {
 
 /* Purge data button */
 .purge-data-btn {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    max-width: 200px;
+    position: relative;  /* Change from absolute to relative */
+    margin: 10px auto;  /* Add margin for spacing */
+    max-width: 250px;   /* Slightly wider for better touch target */
     background: linear-gradient(45deg, #990000, #cc0000);
     color: #ff9999;
     border: 2px solid rgba(255, 0, 0, 0.3);
     text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
-    font-size: 0.9rem;
-    padding: 10px 15px;
+    font-size: 1rem;    /* Slightly larger font */
+    padding: 15px 20px; /* Larger padding for better touch target */
+    width: 90%;         /* Use percentage width */
 }
 
 .purge-data-btn:hover {
@@ -354,5 +354,12 @@ main {
 
     .game-record {
         grid-template-columns: 1fr;
+    }
+    
+    .purge-data-btn {
+        position: relative;
+        margin: 10px auto;
+        font-size: 0.95rem;
+        padding: 12px 15px;
     }
 }
