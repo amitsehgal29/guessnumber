@@ -532,19 +532,19 @@ footer {
 }
 
 .game-instructions {
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(0, 255, 255, 0.3);
-    border-radius: 15px;
-    padding: 20px;
-    margin: 20px 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    border-radius: 12px;
+    padding: 15px;
+    margin: 15px 0;
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .game-instructions h3 {
     color: #00ffff;
-    font-size: 1.1rem;
-    margin-bottom: 15px;
+    font-size: 1rem;
+    margin-bottom: 10px;
     text-align: center;
 }
 
@@ -556,11 +556,20 @@ footer {
 
 .game-instructions li {
     color: #00ffff;
-    padding: 8px 0;
-    font-size: 0.95rem;
-    text-align: left;
-    margin: 5px 0;
-    line-height: 1.4;
+    padding: 4px 0;
+    font-size: 0.9rem;
+    text-align: center;
+    margin: 2px 0;
+    line-height: 1.3;
+}
+
+/* Update spacing between registration elements */
+#player-registration {
+    gap: 10px;
+}
+
+#player-registration .input-group {
+    margin: 5px 0 15px 0;
 }
 
 /* Add responsive design for smaller screens */
@@ -574,12 +583,12 @@ footer {
     }
 
     .game-instructions {
-        padding: 15px;
-        margin: 15px 0;
+        padding: 12px;
+        margin: 10px 0;
     }
     
     .game-instructions li {
-        font-size: 0.9rem;
-        padding: 6px 0;
+        font-size: 0.85rem;
+        padding: 3px 0;
     }
 }
