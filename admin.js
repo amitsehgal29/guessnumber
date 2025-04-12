@@ -1,6 +1,4 @@
 // API Configuration
-c//onst API_URL = 'http://localhost:3000';
-// Uncomment the line below for production
 const API_URL = 'https://guessnumber-1e1p.onrender.com';
 
 // Admin password hash (this is a simple example - in production use proper authentication)
@@ -59,7 +57,6 @@ async function loadStats(isFiltered = false) {
         
         if (isFiltered && playerFilter.value.trim()) {
             const searchName = playerFilter.value.trim();
-            // Use 'player' as the parameter name to match server expectation
             url += `?player=${encodeURIComponent(searchName)}`;
             console.log('🔍 Filtering by player name:', searchName);
             console.log('📡 Full request URL:', url);
@@ -67,12 +64,15 @@ async function loadStats(isFiltered = false) {
 
         console.log('⏳ Sending request to:', url);
         const response = await fetch(url);
+        console.log('📥 Response status:', response.status);
+        
         if (!response.ok) {
-            throw new Error('Failed to fetch data');
+            const errorText = await response.text();
+            console.error('Server error response:', errorText);
+            throw new Error(`Failed to fetch data: ${response.status} ${response.statusText}`);
         }
 
         const games = await response.json();
-        console.log('📥 Response status:', response.status);
         console.log('📥 Received games:', games);
         console.log('📊 Number of games:', games.length);
         
@@ -81,7 +81,8 @@ async function loadStats(isFiltered = false) {
 
     } catch (error) {
         console.error('❌ Error loading game stats:', error);
-        statsContainer.innerHTML = '<p class="error-message">Error loading game statistics</p>';
+        loginMessage.textContent = error.message;
+        statsContainer.innerHTML = '<p class="error-message">Error loading game statistics. Check console for details.</p>';
         summaryContainer.innerHTML = '<p class="error-message">Error loading summary</p>';
     }
 }
@@ -98,7 +99,7 @@ function displayStats(games) {
         const div = document.createElement('div');
         div.className = 'game-record';
         div.innerHTML = `
-            <div><strong>Player:</strong> ${game.player_name || game.playerName}</div>
+            <div><strong>Player:</strong> ${game.player_name}</div>
             <div><strong>Date:</strong> ${formatDate(game.timestamp)}</div>
             <div><strong>Attempts:</strong> ${game.attempts}</div>
             <div><strong>Result:</strong> ${game.won ? 'Won' : 'Gave up'}</div>
